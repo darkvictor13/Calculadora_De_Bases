@@ -1,4 +1,5 @@
 #!/bin/sh
 
-gcc -g -c baseX.c && gcc -g -c main.c && gcc -o main main.o baseX.o
+gcc main.c baseX.c -o main -lm && ./main
+
 exit 0

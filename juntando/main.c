@@ -2,14 +2,20 @@
 
 BaseX leitura () {
 	BaseX s;
+	int base;
 	printf("Insira a base do número: ");
-	scanf("%d", &s.base);
+	scanf("%d", &base);
   printf("Qual número que deseja converter: ");
-	if (s.base == 10) {
+	if (base == 10) {
 		scanf("%lf", &s.decimal);
+		printf("Deseja transformar para qual base: ");
+		scanf("%d", &s.base);
 		decimalToX(&s);
 		doubleToX(&s);
 	}else {
+		//lerNum(s.inteiro)
+		//lerNum(s.fracionario)
+
 		//double aux, f;
 		//int d;
 		//scanf("%lf", &aux);
@@ -25,11 +31,7 @@ void liberaMem (BaseX s) {
 
 int main () {
 	BaseX entrada = leitura();
-	printNum(entrada.fracionario);
-	printf(".");
-	printNum(entrada.inteiro);
-	printf("\n");
+	printBaseX(entrada, 1);
 	liberaMem(entrada);
-
 	return 0;
 }

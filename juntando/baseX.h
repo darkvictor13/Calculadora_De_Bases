@@ -54,4 +54,6 @@ void printNum (numero num);
 *****************************/
 void doubleToX (BaseX *r);
 
+void printBaseX (BaseX num, int eol);
+
 #endif

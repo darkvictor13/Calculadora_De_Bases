@@ -1,4 +1,5 @@
 #include "baseX.h"
+#include <math.h>
 
 void troca (unsigned short int *a, unsigned short int *b) {
   unsigned short int aux = *a;
@@ -24,6 +25,11 @@ void decimalToX (BaseX *r) {
   int base = r->base;// reduzir os acessos a memória via ponteiros
 	int num = (int)floor(r->decimal);
 
+	if (!num) {
+		r->tam = 0;
+		r->inteiro.vet = NULL;
+	}
+
   r->inteiro.vet = (unsigned short int*)malloc(MAX_TAM * sizeof(unsigned short int));
 
   for(i = 0; num; i++) {
@@ -45,6 +51,22 @@ void printNum (numero num) {
   }
 }
 
+void printBaseX (BaseX num, int eol) {
+	if (num.inteiro.vet != NULL) {
+		printNum(num.inteiro);
+	}else {
+		printf("0");
+	}
+
+	if (num.fracionario.vet != NULL) {
+		printf(".");
+		printNum(num.fracionario);
+	}
+	if (eol) {
+		printf("\n");
+	}
+}
+
 /*void printPolinomio(BaseX num) {
   for(int i = 0; i < num.tam ; i++) {
     printf("(%d * %d^%d)", num.numero[i], num.base, i);
@@ -62,6 +84,12 @@ void printNum (numero num) {
   *
 *****************************/
 void doubleToX (BaseX *r) {
+
+	if (r->decimal - floor(r->decimal) == 0.0) {
+		r->tam = 0;
+		r->fracionario.vet = NULL;
+	}
+
 	int i = 0;
 	// alocar memória para representar o número
   r->fracionario.vet = (unsigned short int*)malloc(MAX_TAM * sizeof(unsigned short int));
