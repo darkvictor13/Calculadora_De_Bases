@@ -18,7 +18,7 @@ void troca (unsigned short int *a, unsigned short int *b) {
 
 // vai trocando do começo e do fim ate chegar no meio
 void inverteVet (unsigned short int *vet, int tam) {
-  int metade = (int)floor(tam / 2);
+  int metade = (int)floor(tam / 2.0);
   for(int i = 0; i < metade; i++) {
     troca((vet + i), (vet + tam - (i + 1)));
   }
@@ -36,11 +36,11 @@ void decimalToX (int num_decimal, BaseX *r) {
   }
   r->tam = i;
   r->numero = (unsigned short int*)realloc(r->numero, i * sizeof(unsigned short int));
-  //inverteVet(r->numero, r->tam);
+  inverteVet(r->numero, r->tam);
 }
 
 void printBaseX (BaseX num) {
-  for(int i = (num.tam - 1); i >= 0 ; i--) {
+  for(int i = 0; i < num.tam ; i++) {
     if(num.numero[i] > 9) {
       printf("%c", num.numero[i] - 10 + 'A');
     }else {
@@ -50,7 +50,7 @@ void printBaseX (BaseX num) {
 }
 
 void printPolinomio(BaseX num) {
-  for(int i = (num.tam - 1); i >= 0 ; i--) {
+  for(int i = 0; i < num.tam ; i++) {
     printf("(%d * %d^%d)", num.numero[i], num.base, i);
     if (i != 0) {
       printf(" + ");
