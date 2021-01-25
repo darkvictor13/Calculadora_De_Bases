@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
+#include <ctype.h>
 
 #define MAX_TAM 50
-
 
 typedef struct {
 	unsigned short int* vet;
@@ -55,5 +55,28 @@ void printNum (numero num);
 void doubleToX (BaseX *r);
 
 void printBaseX (BaseX num, int eol);
+
+int lerNum(numero *n, char limite);
+
+unsigned short int* alocaNum();
+
+/*
+  * A struct numero representa a parte inteira
+  *
+*/
+int xTointeiro(numero n, int base);
+
+/*
+  * A struct numero representa a parte fracionaria
+  * retorna um valor < 1
+*/
+double xToDouble(numero n, int base);
+
+double xToDecimal(BaseX s);
+
+BaseX leitura (int *is_decimal);
+
+void liberaMem (BaseX s);
+
 
 #endif
